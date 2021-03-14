@@ -1,0 +1,45 @@
+Bowser Jr.;S
+Fire Bro;M
+Monty Mole;S
+Hammer Bro;M
+Bowser;L
+Ice Bro;M
+Birdo;M
+Black Shy Guy;M
+Red Yoshi;M
+Pauline;M
+Lakitu;M
+Luigi;M
+Peach;M
+// more drivers
+Mario;M
+Waluigi;M
+Toad;S
+Yoshi;M
+Wario;L
+Daisy;M
+Boomerang Bro
+Pink Shy Guy;S
+King Boo;L
+Lemmy;M
+Donkey Kong;L
+Diddy Kong
+Ludwig;M
+Toadette;S
+Dry Bones;S
+Baby Daisy;S
+Koopa Troopa;S
+Roy;L
+Baby Mario;S
+Larry;M
+Baby Luigi;S
+Baby Peach;S
+Iggy;L
+Shy Guy;M
+Wendy;M
+Morton;L
+
+Mario;S
+Luigi;L
+
+4654

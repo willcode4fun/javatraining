@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.valtech.vitp</groupId>
+    <artifactId>javatraining</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>chapter1-run-java-program</module>
+        <module>chapter2-basic-syntax</module>
+        <module>chapter3-test-driven-developement</module>
+        <module>chapter4-web</module>
+        <module>chapter5-advanced</module>
+        <module>chapter6-libraries</module>
+        <module>monopoly</module>
+        <module>chapter4-web-spring</module>
+        <module>ws-client</module>
+        <module>mario-kart</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

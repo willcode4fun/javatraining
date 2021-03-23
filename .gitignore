@@ -12,6 +12,7 @@
 .mtj.tmp/
 .idea
 target
+.~lock*
 
 # Package Files #
 *.jar

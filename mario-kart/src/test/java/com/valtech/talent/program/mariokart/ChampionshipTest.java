@@ -1,9 +1,13 @@
 package com.valtech.talent.program.mariokart;
 
+import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Circuit;
 import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Driver;
+import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Performance;
 import org.junit.Test;
 
 import java.util.Collection;
+import java.util.Map;
+
 import org.assertj.core.api.Assertions;
 
 public class ChampionshipTest {
@@ -14,7 +18,47 @@ public class ChampionshipTest {
 
         Collection<Driver> drivers = championship.loadDrivers();
 
-        Assertions.assertThat(drivers).isNotEmpty().hasSize(41);
+        Assertions.assertThat(drivers)
+                .isNotEmpty()
+                .hasSize(41);
+    }
+
+    @Test
+    public void should_perform_qualifications(){
+        Championship championship = new Championship();
+        Collection<Driver> drivers = championship.loadDrivers();
+
+        Collection<Driver> qualified = championship.qualifications(drivers, Circuit.BOWSER_CASLE);
+
+        Assertions.assertThat(qualified)
+                .isNotEmpty()
+                .hasSize(10);
+    }
+
+    @Test
+    public void should_perform_race(){
+        Championship championship = new Championship();
+        Collection<Driver> drivers = championship.loadDrivers();
+
+        Collection<Driver> qualified = championship.qualifications(drivers, Circuit.BOWSER_CASLE);
+
+        Collection<Performance> raceResults = championship.race(qualified, Circuit.BOWSER_CASLE);
+
+        Assertions.assertThat(raceResults)
+                .isNotEmpty()
+                .hasSize(10);
+    }
+
+    @Test
+    public void should_perform_championship(){
+        Championship championship = new Championship();
+        Collection<Driver> drivers = championship.loadDrivers();
+
+        Map<Circuit, Collection<Performance>> championshipResults = championship.perform(drivers);
+
+        Assertions.assertThat(championshipResults)
+                .isNotEmpty()
+                .hasSize(4);
     }
 
 }

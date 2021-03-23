@@ -14,7 +14,7 @@ public class ChampionshipTest {
 
         Collection<Driver> drivers = championship.loadDrivers();
 
-        Assertions.assertThat(drivers).isNotEmpty();
+        Assertions.assertThat(drivers).isNotEmpty().hasSize(41);
     }
 
 }

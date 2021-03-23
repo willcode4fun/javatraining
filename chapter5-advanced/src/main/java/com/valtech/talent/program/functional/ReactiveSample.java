@@ -26,8 +26,11 @@ public class ReactiveSample {
 
         observable.subscribe(System.out::println);
 
+
         Observable.interval(1, TimeUnit.SECONDS)
+
                 .take(10)
+
                 .subscribe((a) -> System.out.println("TICK "+a));
 
 
@@ -46,6 +49,7 @@ public class ReactiveSample {
 
 
         Observable<String> stringObservable1 = Observable.fromCallable(() -> "toto");
+
         Observable<String> stringObservable2 = Observable.fromCallable(() -> "bob");
 
 

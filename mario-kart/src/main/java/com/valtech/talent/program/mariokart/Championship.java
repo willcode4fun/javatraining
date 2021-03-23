@@ -1,18 +1,13 @@
 package com.valtech.talent.program.mariokart;
 
-import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Circuit;
-import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.CircuitQualif;
-import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Driver;
-import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Performance;
+import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.*;
 import org.apache.commons.io.IOUtils;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.DriverCategory.M;
@@ -28,7 +23,7 @@ public class Championship {
                 .filter(this::validateLine)
                 .map(s -> s.split(";"))
                 .map(this::mapDriver)
-                .peek(System.out::println)
+                //.peek(System.out::println)
                 .collect(Collectors.toList());
     }
 
@@ -86,4 +81,40 @@ public class Championship {
 
     }
 
+    public Collection<PointsPerDriver> computeRacePoints(Collection<Performance> raceResults) {
+
+
+        ArrayList<Performance> asList = new ArrayList<>(raceResults);
+
+        return IntStream.range(0, raceResults.size())
+                .mapToObj(index -> new PointsPerDriver(asList.get(index).getDriver(),10 - index))
+                .collect(Collectors.toList());
+    }
+
+    public Collection<PointsPerDriver> computeChampionshipPoints(Map<Circuit, Collection<Performance>> championshipResults) {
+        return championshipResults.values().stream()
+                .map(this::computeRacePoints)
+                .reduce(this::mergeResults)
+                .orElseThrow(() -> new RuntimeException("No results"))
+                .stream().sorted(Comparator.comparing(PointsPerDriver::getPoints).reversed())
+                .collect(Collectors.toList());
+    }
+
+    public Collection<PointsPerDriver> mergeResults(Collection<PointsPerDriver> first, Collection<PointsPerDriver>  second){
+
+        return Stream.concat(first.stream(), second.stream())
+                .collect(
+                        () -> new HashMap<Driver, Integer>(),
+                        (accMap, pointsPerDriver) -> Optional
+                                .ofNullable(accMap.get(pointsPerDriver.getDriver()))
+                                .ifPresentOrElse(
+                                        v -> accMap.put(pointsPerDriver.getDriver(), v + pointsPerDriver.getPoints()),
+                                        () -> accMap.put(pointsPerDriver.getDriver(), pointsPerDriver.getPoints())), (map, map2) -> {
+                        }).entrySet()
+                        .stream()
+                        .map(e -> new PointsPerDriver(e.getKey(), e.getValue()))
+                        .collect(Collectors.toList());
+
+
+    }
 }

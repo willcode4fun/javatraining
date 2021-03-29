@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class LoggerSample {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(LoggerSample.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(LoggerSample.class);
 
     public static void main(String[] args) {
 
@@ -17,7 +17,7 @@ public class LoggerSample {
 
         LOGGER.info("information that may be used in production logs ");
 
-        LOGGER.warn("warn :", new RuntimeException("there is an exception"));
+        LOGGER.warn("warn :");
 
         LOGGER.error("error :", new RuntimeException("there is an exception"));
     }

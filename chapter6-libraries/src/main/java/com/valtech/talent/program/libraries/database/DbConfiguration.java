@@ -24,8 +24,6 @@ public class DbConfiguration {
     @Value("${talent.program.datasource-classname}")
     private String dsClassName;
 
-
-
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();

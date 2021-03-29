@@ -36,12 +36,16 @@ public class ThymeleafSample {
     public static void main(String[] args) {
 
         TemplateEngine templateEngine = new TemplateEngine();
+
         FileTemplateResolver templateResolver = new FileTemplateResolver();
+
+
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
         context.setVariable("name", "Valtech Talent Program");
         context.setVariable("drivers", loadData());
+
         StringWriter stringWriter = new StringWriter();
         templateEngine.process(TEMPLATE_PATH, context, stringWriter);
 

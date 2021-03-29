@@ -9,7 +9,7 @@ public interface DriverRepository extends JpaRepository<Driver,Long> {
 
     Driver findByName(String name);
 
-    @Query("SELECT d FROM Driver d WHERE d.type = 'S'")
-    Collection<Driver> findSmallDrivers();
+   // @Query("SELECT d FROM Driver d WHERE d.type = 'S'")
+   // Collection<Driver> findSmallDrivers();
 
 }

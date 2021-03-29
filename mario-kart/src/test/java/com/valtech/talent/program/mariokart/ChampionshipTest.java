@@ -80,6 +80,21 @@ public class ChampionshipTest {
     }
 
     @Test
+    public void should_export_race_results_as_pdf(){
+        Championship championship = new Championship();
+        Collection<Driver> drivers = new TextDriverRepository().loadDrivers();
+
+        Collection<Driver> qualified = championship.qualifications(drivers, Circuit.BOWSER_CASLE);
+        Collection<Performance> raceResults = championship.race(qualified, Circuit.BOWSER_CASLE);
+
+        File targetFile = new File("/home/tomchuck/tmp/race-results.pdf");
+
+
+        ChampionshipExportService.exportAsPdf(raceResults, targetFile);
+
+    }
+
+    @Test
     public void should_perform_championship(){
         Championship championship = new Championship();
         Collection<Driver> drivers = new TextDriverRepository().loadDrivers();

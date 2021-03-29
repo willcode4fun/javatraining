@@ -52,7 +52,9 @@ public class DbConfiguration {
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
+
         properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        properties.setProperty("spring.jpa.show-sql", "true");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
 
         return properties;

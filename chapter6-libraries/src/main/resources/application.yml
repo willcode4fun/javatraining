@@ -2,3 +2,8 @@ talent:
   program:
     datasource-url: jdbc:hsqldb:mem:myDb
     datasource-classname: org.hsqldb.jdbc.JDBCDriver
+
+
+spring:
+  jpa:
+    show-sql: true

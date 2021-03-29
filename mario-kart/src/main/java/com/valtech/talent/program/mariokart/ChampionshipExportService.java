@@ -1,5 +1,10 @@
 package com.valtech.talent.program.mariokart;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Performance;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -43,4 +48,31 @@ public class ChampionshipExportService {
         }
     }
 
+    public static void exportAsPdf(Collection<Performance> raceResults, File targetFile) {
+        try {
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream(targetFile));
+            //open
+            document.open();
+
+            Paragraph p = new Paragraph();
+            p.add("Race Results");
+            p.setAlignment(Element.ALIGN_CENTER);
+
+            document.add(p);
+            raceResults.stream().forEach(perf -> {
+                try {
+                    document.add( new Paragraph(perf.getDriver().getName()+" : "+perf.getTimeInSeconds()));
+                } catch (DocumentException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+
+            //close
+            document.close();
+        } catch (IOException | DocumentException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

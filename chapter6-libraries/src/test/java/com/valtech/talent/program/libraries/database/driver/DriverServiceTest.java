@@ -11,8 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(
-        classes = SpringSample.class)
+@SpringBootTest(classes = SpringSample.class)
 public class DriverServiceTest {
 
     @Autowired

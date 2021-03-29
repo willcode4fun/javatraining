@@ -1,7 +1,7 @@
 package com.valtech.talent.program.mariokart.driver;
 
-import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Driver;
-import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.DriverCategory;
+import com.valtech.talent.program.mariokart.model.Driver;
+import com.valtech.talent.program.mariokart.model.DriverCategory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -18,7 +18,7 @@ public class ExcelDriverRepository implements DriverRepository {
         List results = new ArrayList();
         try {
 
-            InputStream excelFile = this.getClass().getResourceAsStream(("/drivers.xlsx"));
+            InputStream excelFile = this.getClass().getResourceAsStream(("/data//drivers.xlsx"));
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet sheet = workbook.getSheetAt(0);
             log.info("Datasheet name : {}", sheet.getSheetName());
@@ -29,7 +29,7 @@ public class ExcelDriverRepository implements DriverRepository {
                 category =category.isBlank() ? "M":category;
                 if(!driverName.isBlank()) {
                     log.debug("driver {} {}", driverName, category);
-                    results.add(new Driver(driverName, DriverCategory.valueOf(category)));
+                    results.add(new Driver(1l, driverName, DriverCategory.valueOf(category)));
                 }
             });
 

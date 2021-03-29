@@ -1,4 +1,4 @@
-package com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model;
+package com.valtech.talent.program.mariokart.model;
 
 import java.util.Random;
 

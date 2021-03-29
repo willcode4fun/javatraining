@@ -5,18 +5,18 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Performance;
+import com.valtech.talent.program.mariokart.model.Performance;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.stream.IntStream;
 
+@Service
 public class ChampionshipExportService {
 
     public static void exportAsExcel(Collection<Performance> raceResults, File targetFile) {

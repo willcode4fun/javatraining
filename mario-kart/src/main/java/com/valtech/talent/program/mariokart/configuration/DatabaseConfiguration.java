@@ -1,4 +1,4 @@
-package com.valtech.talent.program.libraries.database;
+package com.valtech.talent.program.mariokart.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +15,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = DbConfiguration.REPOSITORIES_PACKAGE)
-public class DbConfiguration {
+@EnableJpaRepositories(basePackages = DatabaseConfiguration.REPOSITORIES_PACKAGE)
+public class DatabaseConfiguration {
 
     public static final String ENTITIES_PACKAGE = "com.valtech.talent.program.mariokart.model";
     public static final String REPOSITORIES_PACKAGE = "com.valtech.talent.program.mariokart.driver";
@@ -56,4 +56,5 @@ public class DbConfiguration {
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
         return properties;
     }
+
 }

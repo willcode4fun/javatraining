@@ -3,6 +3,7 @@ package com.valtech.talent.program.libraries.database.driver;
 
 import com.valtech.talent.program.libraries.SpringSample;
 import org.assertj.core.api.Assertions;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +28,7 @@ public class DriverServiceTest {
         Driver toto = driverService.findByName("toto");
 
         Assertions.assertThat(toto).isNotNull();
+        Assertions.assertThat(toto.getType()).isEqualTo("A");
     }
 
 }

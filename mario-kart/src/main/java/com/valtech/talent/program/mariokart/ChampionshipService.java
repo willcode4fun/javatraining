@@ -1,7 +1,10 @@
 package com.valtech.talent.program.mariokart;
 
-import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.*;
+import com.valtech.talent.program.mariokart.driver.JpaDriverRepository;
+import com.valtech.talent.program.mariokart.model.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,12 +12,16 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @Slf4j
-public class Championship {
+@Service
+@RequiredArgsConstructor
+public class ChampionshipService {
+
+    private final JpaDriverRepository driverRepository;
 
 
+    public Collection<Driver> qualifications(Circuit circuit) {
 
-    public Collection<Driver> qualifications(Collection<Driver> drivers, Circuit circuit) {
-        return drivers.stream()
+        return driverRepository.loadDrivers().stream()
                 .map(d -> computePerformance(d,circuit))
                 .sorted(Comparator.comparingDouble(Performance::getTimeInSeconds))
                 //.peek(p -> System.out.println("PERF :"+p.driver +p.timeInSeconds))
@@ -23,10 +30,6 @@ public class Championship {
                 .collect(Collectors.toList());
 
     }
-
-
-
-
 
     private Performance computePerformance(Driver driver, Circuit circuit){
         return new Performance(driver, circuit.perform(driver.getCategory()));
@@ -39,10 +42,10 @@ public class Championship {
                 .collect(Collectors.toList());
     }
 
-    public Map<Circuit, Collection<Performance>> perform(Collection<Driver> drivers) {
+    public Map<Circuit, Collection<Performance>> perform() {
 
          return Stream.of(Circuit.values())
-                 .map(circuit -> new CircuitQualif(circuit, qualifications(drivers, circuit)))
+                 .map(circuit -> new CircuitQualif(circuit, qualifications( circuit)))
                  .collect(Collectors.toMap(
                          CircuitQualif::getCircuit, // key
                          (cq) -> this.race(cq.getQualified(), cq.getCircuit()))); // value
@@ -68,7 +71,7 @@ public class Championship {
                 .collect(Collectors.toList());
     }
 
-    public Collection<PointsPerDriver> mergeResults(Collection<PointsPerDriver> first, Collection<PointsPerDriver>  second){
+    private Collection<PointsPerDriver> mergeResults(Collection<PointsPerDriver> first, Collection<PointsPerDriver>  second){
 
         return Stream.concat(first.stream(), second.stream())
                 .collect(

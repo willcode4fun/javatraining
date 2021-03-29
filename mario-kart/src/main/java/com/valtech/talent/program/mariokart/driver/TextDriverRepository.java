@@ -1,20 +1,19 @@
 package com.valtech.talent.program.mariokart.driver;
 
-import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.Driver;
+import com.valtech.talent.program.mariokart.model.Driver;
 import org.apache.commons.io.IOUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.DriverCategory.M;
-import static com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.DriverCategory.valueOf;
+import static com.valtech.talent.program.mariokart.model.DriverCategory.M;
+import static com.valtech.talent.program.mariokart.model.DriverCategory.valueOf;
 
 public class TextDriverRepository implements DriverRepository {
 
-    public static final String DRIVERS_TXT = "/drivers.txt";
+    public static final String DRIVERS_TXT = "/data/drivers.txt";
 
     public Collection<Driver> loadDrivers() {
         return getFileContent()

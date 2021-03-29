@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Valtech Talent Program</title>
+</head>
+<body>
+
+<h1>Hello <span th:text="${name}"></span></h1>
+<div>
+    <table>
+        <tr><th>Name</th><th>type</th></tr>
+        <tr th:each="driver : ${drivers}">
+            <td th:text="${driver.name}"></td>
+            <td th:text="${driver.type}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html> 

@@ -18,6 +18,8 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = "com.valtech.talent.program.libraries.database.driver")
 public class DbConfiguration {
 
+    public static final String ENTITIES_PACKAGE = "com.valtech.talent.program.libraries.database.driver";
+
     @Value("${talent.program.datasource-url}")
     private String dsUrl;
 
@@ -39,7 +41,7 @@ public class DbConfiguration {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "com.valtech.talent.program.libraries.database.driver" });
+        em.setPackagesToScan(new String[] {ENTITIES_PACKAGE});
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

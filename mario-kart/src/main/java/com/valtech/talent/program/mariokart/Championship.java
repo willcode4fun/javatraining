@@ -1,49 +1,17 @@
 package com.valtech.talent.program.mariokart;
 
 import com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.*;
-import org.apache.commons.io.IOUtils;
+import lombok.extern.slf4j.Slf4j;
 
-import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.DriverCategory.M;
-import static com.valtech.talent.program.mariokart.com.valtech.talent.program.mariokart.model.DriverCategory.valueOf;
-
+@Slf4j
 public class Championship {
 
-    public static final String DRIVERS_TXT = "/drivers.txt";
 
-    public Collection<Driver> loadDrivers() {
-        return getFileContent()
-                .stream()
-                .filter(this::validateLine)
-                .map(s -> s.split(";"))
-                .map(this::mapDriver)
-                //.peek(System.out::println)
-                .collect(Collectors.toList());
-    }
-
-    private List<String> getFileContent() {
-        try {
-            return IOUtils.readLines(this.getClass().getResourceAsStream(DRIVERS_TXT), StandardCharsets.UTF_8);
-        } catch(Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private Driver mapDriver(String[] arr){
-        return new Driver(arr[0], arr.length > 1? valueOf(arr[1]): M);
-    }
-
-    private boolean validateLine(String line){
-        return !line.isBlank()
-                && Pattern.matches("[a-zA-Z; \\.]*", line);
-
-    }
 
     public Collection<Driver> qualifications(Collection<Driver> drivers, Circuit circuit) {
         return drivers.stream()
@@ -117,4 +85,6 @@ public class Championship {
 
 
     }
+
+
 }

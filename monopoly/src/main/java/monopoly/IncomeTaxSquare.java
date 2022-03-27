@@ -1,6 +1,7 @@
 package monopoly;
 
 public class IncomeTaxSquare extends Square {
+
 	public IncomeTaxSquare() {
 		super("Income Tax");
 	}

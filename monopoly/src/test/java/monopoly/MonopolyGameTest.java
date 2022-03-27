@@ -25,8 +25,6 @@ public class MonopolyGameTest {
 
         monopolyGame.removePlayer();
 
-
-        assertThat(monopolyGame.getPlayerCount()).isEqualTo(4);
     }
 
     @Test(expected = RuntimeException.class)

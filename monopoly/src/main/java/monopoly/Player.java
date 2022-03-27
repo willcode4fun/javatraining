@@ -42,7 +42,7 @@ public class Player {
 	public void takeTurn() {
 		_die1.roll();
 		_die2.roll();
-		int squaresToMove = _die1.getFaceValue() + _die2.getFaceValue();
+		int squaresToMove = _die1.getValue() + _die2.getValue();
 		System.out.println(_name + " rolls " + squaresToMove);
 
 		for (int i = 0; i < squaresToMove - 1; i++) {

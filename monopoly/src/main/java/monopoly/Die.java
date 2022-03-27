@@ -11,11 +11,8 @@ public class Die {
 		faceValue = (int) (Math.random() * 6) + 1;
 	}
 
-	public int getFaceValue() {
+	public int getValue() {
 		return faceValue;
 	}
 
-	public void setFaceValue(int value) {
-		faceValue = value;
-	}
 }

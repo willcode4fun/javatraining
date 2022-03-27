@@ -12,7 +12,8 @@ public class GlobalRankingService {
 
 
     public PlayerRankings getRankings() {
-        epicRankingService.getRankings();
-        return null;
+        //steamRankingService.getRankings(1);
+        return epicRankingService.getRankings(1);
+
     }
 }

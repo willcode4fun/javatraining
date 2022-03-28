@@ -1,16 +1,11 @@
 package monopoly;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -20,7 +15,7 @@ public class CupTest {
 
     @Spy
     private Die first;
-    @Mock
+    @Spy
     private Die second;
 
 
@@ -41,6 +36,9 @@ public class CupTest {
         cup = new Cup(first, second);
         when(first.getValue()).thenReturn(1);
         when(first.getValue()).thenReturn(2);
+
+        when(second.getValue()).thenReturn(1);
+        when(second.getValue()).thenReturn(2);
     }
 
 
@@ -52,6 +50,9 @@ public class CupTest {
         //assertTrue(cup.getValue() <= 12);
         verify(first).roll();
         verify(first).getValue();
+
+        verify(second).roll();
+        verify(second).getValue();
 
     }
 }

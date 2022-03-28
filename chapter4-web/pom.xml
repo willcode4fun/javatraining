@@ -11,6 +11,8 @@
 
     <artifactId>chapter4-web</artifactId>
 
+    <packaging>war</packaging>
+
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->

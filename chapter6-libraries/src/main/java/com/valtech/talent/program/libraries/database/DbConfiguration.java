@@ -18,8 +18,8 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = DbConfiguration.REPOSITORIES_PACKAGE)
 public class DbConfiguration {
 
-    public static final String ENTITIES_PACKAGE = "com.valtech.talent.program.mariokart.model";
-    public static final String REPOSITORIES_PACKAGE = "com.valtech.talent.program.mariokart.driver";
+    public static final String ENTITIES_PACKAGE = "com.valtech.talent.program.libraries.database.driver";
+    public static final String REPOSITORIES_PACKAGE = "com.valtech.talent.program.libraries.database.driver";
 
     @Value("${talent.program.datasource-url}")
     private String dsUrl;

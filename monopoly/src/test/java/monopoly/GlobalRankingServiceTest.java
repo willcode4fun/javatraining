@@ -43,7 +43,7 @@ public class GlobalRankingServiceTest {
         // CHECK
         Assertions.assertThat(playerRankings).isNotNull();
 
-        Mockito.verify(steamRankingService).getRankings(anyInt());
+        verify(steamRankingService).getRankings(anyInt());
 
     }
 }

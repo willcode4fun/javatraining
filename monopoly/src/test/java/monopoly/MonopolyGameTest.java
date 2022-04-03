@@ -25,6 +25,7 @@ public class MonopolyGameTest {
 
         monopolyGame.removePlayer();
 
+        assertThat(monopolyGame.getPlayerCount()).isEqualTo(4);
     }
 
     @Test(expected = RuntimeException.class)
@@ -35,8 +36,24 @@ public class MonopolyGameTest {
         monopolyGame.removePlayer();
 
 
-        //assertThat(monopolyGame.getPlayerCount()).isEqualTo(2);
     }
 
+    @Test(expected = RuntimeException.class)
+    public void should_not_add_player_if_player_count_over_10(){
+        MonopolyGame monopolyGame = new MonopolyGame(10,5);
 
+
+        monopolyGame.addPlayer();
+
+
+    }
+
+    @Test
+    public void should_reset_players(){
+        MonopolyGame monopolyGame = new MonopolyGame(5,5);
+
+
+        monopolyGame.resetPlayers();
+        assertThat(monopolyGame.getPlayerCount()).isEqualTo(2);
+    }
 }

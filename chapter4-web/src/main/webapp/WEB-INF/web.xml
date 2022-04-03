@@ -8,7 +8,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <servlet>
         <servlet-name>HelloWorld</servlet-name>
         <servlet-class>
-            com.valtech.talent.program.HelloWorldServlet
+            com.valtech.talent.program.web.servlet.HelloWorldServlet
         </servlet-class>
     </servlet>
 
@@ -17,16 +17,29 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
         <url-pattern>/HelloWorld</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>HelloJsp</servlet-name>
+        <servlet-class>
+            com.valtech.talent.program.web.servlet.HelloJspServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloJsp</servlet-name>
+        <url-pattern>/HelloJsp</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>TestFilter</filter-name>
         <filter-class>
-            com.valtech.talent.program.TestFilter
+            com.valtech.talent.program.web.filter.TestFilter
         </filter-class>
     </filter>
 
     <filter-mapping>
         <filter-name>TestFilter</filter-name>
-        <url-pattern>/HelloWorld</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <welcome-file-list>

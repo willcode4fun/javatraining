@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: javatraining
+server:
+  port: 8090
+  servlet:
+    context-path: /javatraining
+logging:
+  file:
+    name: javatraining.log

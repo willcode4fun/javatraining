@@ -18,9 +18,9 @@ public class HelloJspServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse
             response) throws IOException, ServletException {
 
-        handleRequest(request);
+        //handleRequest(request);
 
-        handleResponse(response);
+        ///handleResponse(response);
 
         this.getServletContext().getRequestDispatcher("/jsp/hello.jsp").forward(request, response);
     }

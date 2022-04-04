@@ -18,8 +18,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("samplegreeting")
 public class SampleController {
 
-    @GetMapping("{id}")
-    public SampleGreeting read(@PathVariable String id) {
+    @GetMapping("{id}/toto/{secondid}")
+    public SampleGreeting read(@PathVariable("id") String id, @PathVariable("secondid") String secondid) {
 
         if(id ==  null || id.trim().equals("")) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "id parameter is empty");
@@ -29,8 +29,8 @@ public class SampleController {
     }
 
     @RequestMapping(path = "/sample", method = POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-    public ResponseEntity<Object> saveEmployee(@RequestParam String name, @RequestPart MultipartFile document) {
+    public ResponseEntity<Object> saveEmployee(@RequestAttribute("name") String name, @RequestPart MultipartFile document) {
         SampleGreeting sample = new SampleGreeting(name, document.getOriginalFilename());
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(sample);
     }
 }

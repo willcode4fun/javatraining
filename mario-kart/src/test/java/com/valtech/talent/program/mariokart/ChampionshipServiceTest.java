@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
@@ -77,12 +78,14 @@ public class ChampionshipServiceTest extends BaseStpringTest {
     }
 
     @Test
-    public void should_export_race_results(){
+    public void should_export_race_results() throws IOException {
 
         Collection<Driver> qualified = championshipService.qualifications( Circuit.BOWSER_CASLE);
         Collection<Performance> raceResults = championshipService.race(qualified, Circuit.BOWSER_CASLE);
 
-        File targetFile = new File("/home/tomchuck/tmp/race-results.xlsx");
+        Assertions.assertThat(raceResults).isNotEmpty();
+
+        File targetFile = File.createTempFile("race-results",".xlsx");
 
 
         ChampionshipExportService.exportAsExcel(raceResults, targetFile);
@@ -90,12 +93,14 @@ public class ChampionshipServiceTest extends BaseStpringTest {
     }
 
     @Test
-    public void should_export_race_results_as_pdf(){
+    public void should_export_race_results_as_pdf() throws IOException{
 
         Collection<Driver> qualified = championshipService.qualifications( Circuit.BOWSER_CASLE);
         Collection<Performance> raceResults = championshipService.race(qualified, Circuit.BOWSER_CASLE);
 
-        File targetFile = new File("/home/tomchuck/tmp/race-results.pdf");
+        Assertions.assertThat(raceResults).isNotEmpty();
+
+        File targetFile = File.createTempFile("race-results",".pdf");
 
 
         ChampionshipExportService.exportAsPdf(raceResults, targetFile);
@@ -105,12 +110,15 @@ public class ChampionshipServiceTest extends BaseStpringTest {
     @Test
     public void should_perform_championship(){
 
-        Map<Circuit, Collection<Performance>> championshipResults = championshipService.perform();
+        Map<Circuit, Collection<Performance>> championshipResults = championshipService.performChampionship();
 
         Assertions.assertThat(championshipResults)
                 .isNotEmpty()
                 .hasSize(4);
 
+        championshipResults.values().forEach(
+                perf -> Assertions.assertThat(perf).isNotEmpty()
+        );
         log.debug("test passed");
     }
 
@@ -131,10 +139,11 @@ public class ChampionshipServiceTest extends BaseStpringTest {
 
     @Test
     public void should_compute_championship_points(){
-        Map<Circuit, Collection<Performance>> championshipResults = championshipService.perform();
+        Map<Circuit, Collection<Performance>> championshipResults = championshipService.performChampionship();
 
         Collection<PointsPerDriver> pointsPerDriver = championshipService.computeChampionshipPoints(championshipResults);
 
+        Assertions.assertThat(pointsPerDriver).isNotEmpty();
 
         pointsPerDriver.stream().forEach(ppdriver -> System.out.println("Driver : "+ppdriver.getDriver().getName()+" points "+ppdriver.getPoints()));
     }

@@ -2,9 +2,11 @@ package com.valtech.talent.program.mariokart.driver;
 
 import com.valtech.talent.program.mariokart.model.Driver;
 import org.apache.commons.io.IOUtils;
+import org.apache.poi.ss.formula.eval.NotImplementedException;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,16 +18,12 @@ public class TextDriverRepository implements DriverRepository {
     public static final String DRIVERS_TXT = "/data/drivers.txt";
 
     public Collection<Driver> loadDrivers() {
-        return getFileContent()
-                .stream()
-                .filter(DriverUtils::validateLine)
-                .map(s -> s.split(";"))
-                .map(this::mapDriver)
-                //.peek(System.out::println)
-                .collect(Collectors.toList());
+        // TODO : Task 1.2
+        return Collections.emptyList();
     }
 
     private List<String> getFileContent() {
+        // TODO : Task 1.1
         try {
             return IOUtils.readLines(this.getClass().getResourceAsStream(DRIVERS_TXT), StandardCharsets.UTF_8);
         } catch(Exception e) {
@@ -34,7 +32,8 @@ public class TextDriverRepository implements DriverRepository {
     }
 
     private Driver mapDriver(String[] arr){
-        return new Driver(arr[0], arr.length > 1? valueOf(arr[1]): M);
+        // TODO : Task 1.3
+        return null;
     }
 
 

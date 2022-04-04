@@ -20,29 +20,32 @@ public class ChampionshipService {
 
 
     public Collection<Driver> qualifications(Circuit circuit) {
-
-        return driverRepository.loadDrivers().stream()
-                .map(d -> computePerformance(d,circuit))
-                .sorted(Comparator.comparingDouble(Performance::getTimeInSeconds))
-                //.peek(p -> System.out.println("PERF :"+p.driver +p.timeInSeconds))
-                .limit(10)
-                .map(Performance::getDriver)
-                .collect(Collectors.toList());
+        //TODO: Task 2.1
+        return Collections.emptyList();
 
     }
 
     private Performance computePerformance(Driver driver, Circuit circuit){
+        //TODO use Circuit.perform
         return new Performance(driver, circuit.perform(driver.getCategory()));
     }
 
 
     public Collection<Performance> race(Collection<Driver> drivers, Circuit circuit) {
-        return drivers.stream()
-                .map(d -> computePerformance(d,circuit))
-                .collect(Collectors.toList());
+        //TODO: Task 2.2
+        return Collections.emptyList();
     }
 
-    public Map<Circuit, Collection<Performance>> perform() {
+    public Collection<PointsPerDriver> computeRacePoints(Collection<Performance> raceResults) {
+
+        //TODO: Task 3.1
+
+        // TODO: Task 3.2
+
+        return Collections.emptyList();
+    }
+
+    public Map<Circuit, Collection<Performance>> performChampionship() {
 
          return Stream.of(Circuit.values())
                  .map(circuit -> new CircuitQualif(circuit, qualifications( circuit)))
@@ -52,39 +55,17 @@ public class ChampionshipService {
 
     }
 
-    public Collection<PointsPerDriver> computeRacePoints(Collection<Performance> raceResults) {
 
-
-        ArrayList<Performance> asList = new ArrayList<>(raceResults);
-
-        return IntStream.range(0, raceResults.size())
-                .mapToObj(index -> new PointsPerDriver(asList.get(index).getDriver(),10 - index))
-                .collect(Collectors.toList());
-    }
 
     public Collection<PointsPerDriver> computeChampionshipPoints(Map<Circuit, Collection<Performance>> championshipResults) {
-        return championshipResults.values().stream()
-                .map(this::computeRacePoints)
-                .reduce(this::mergeResults)
-                .orElseThrow(() -> new RuntimeException("No results"))
-                .stream().sorted(Comparator.comparing(PointsPerDriver::getPoints).reversed())
-                .collect(Collectors.toList());
+        // TODO: Task 3.3
+
+        return Collections.emptyList();
     }
 
     private Collection<PointsPerDriver> mergeResults(Collection<PointsPerDriver> first, Collection<PointsPerDriver>  second){
 
-        return Stream.concat(first.stream(), second.stream())
-                .collect(
-                        () -> new HashMap<Driver, Integer>(),
-                        (accMap, pointsPerDriver) -> Optional
-                                .ofNullable(accMap.get(pointsPerDriver.getDriver()))
-                                .ifPresentOrElse(
-                                        v -> accMap.put(pointsPerDriver.getDriver(), v + pointsPerDriver.getPoints()),
-                                        () -> accMap.put(pointsPerDriver.getDriver(), pointsPerDriver.getPoints())), (map, map2) -> {
-                        }).entrySet()
-                        .stream()
-                        .map(e -> new PointsPerDriver(e.getKey(), e.getValue()))
-                        .collect(Collectors.toList());
+        return Collections.emptyList();
 
 
     }

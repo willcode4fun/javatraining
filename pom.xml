@@ -22,7 +22,6 @@
         <module>ws-client</module>
         <module>mario-kart</module>
         <module>web-training</module>
-        <module>exercice2</module>
     </modules>
 
     <build>

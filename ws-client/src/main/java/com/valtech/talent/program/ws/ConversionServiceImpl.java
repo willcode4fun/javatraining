@@ -10,6 +10,7 @@ public class ConversionServiceImpl implements ConversionService {
 
     @Override
     public String convert(int num) {
+        System.out.println("Converting : "+num);
         return new NumberConversion().getNumberConversionSoap().numberToWords(BigInteger.valueOf(num));
     }
 }

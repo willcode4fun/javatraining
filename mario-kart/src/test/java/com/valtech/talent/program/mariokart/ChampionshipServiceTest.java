@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
@@ -77,12 +78,12 @@ public class ChampionshipServiceTest extends BaseStpringTest {
     }
 
     @Test
-    public void should_export_race_results(){
+    public void should_export_race_results() throws IOException {
 
         Collection<Driver> qualified = championshipService.qualifications( Circuit.BOWSER_CASLE);
         Collection<Performance> raceResults = championshipService.race(qualified, Circuit.BOWSER_CASLE);
 
-        File targetFile = new File("/home/tomchuck/tmp/race-results.xlsx");
+        File targetFile = File.createTempFile("race-results","xlsx");
 
 
         ChampionshipExportService.exportAsExcel(raceResults, targetFile);
@@ -90,12 +91,12 @@ public class ChampionshipServiceTest extends BaseStpringTest {
     }
 
     @Test
-    public void should_export_race_results_as_pdf(){
+    public void should_export_race_results_as_pdf() throws IOException {
 
         Collection<Driver> qualified = championshipService.qualifications( Circuit.BOWSER_CASLE);
         Collection<Performance> raceResults = championshipService.race(qualified, Circuit.BOWSER_CASLE);
 
-        File targetFile = new File("/home/tomchuck/tmp/race-results.pdf");
+        File targetFile = File.createTempFile("race-results","pdf");
 
 
         ChampionshipExportService.exportAsPdf(raceResults, targetFile);

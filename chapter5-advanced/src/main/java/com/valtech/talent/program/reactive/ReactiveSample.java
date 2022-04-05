@@ -17,11 +17,13 @@ public class ReactiveSample {
 
         Observable<Integer> tick = Observable.interval(1, TimeUnit.SECONDS).take(10).map(Long::intValue);
 
+
         Observable<String> integers = Observable.range(0, 100)
 
                 .map(i -> random.nextInt(5000))
 
                 .map(conversionService::convert);
+
 
         tick.zipWith(integers, (a,b) -> a+" : "+b )
 
